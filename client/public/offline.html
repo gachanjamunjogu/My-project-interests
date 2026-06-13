@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AURA - Offline</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        background: #070707;
+        color: #ffffff;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+          "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+          sans-serif;
+      }
+
+      body {
+        background: radial-gradient(circle at top left, rgba(212, 175, 55, 0.14), transparent 35%),
+          radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.06), transparent 30%),
+          #070707;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .offline-container {
+        text-align: center;
+        padding: 2rem;
+        max-width: 500px;
+        background: rgba(11, 11, 11, 0.6);
+        border: 1px solid rgba(212, 175, 55, 0.15);
+        border-radius: 24px;
+        backdrop-filter: blur(40px);
+        box-shadow: 0 18px 60px rgba(0, 0, 0, 0.65);
+      }
+
+      .offline-icon {
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+        opacity: 0.7;
+      }
+
+      h1 {
+        font-size: 1.875rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        background: linear-gradient(135deg, #d4af37, #e8d18a);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      p {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+      }
+
+      .status-info {
+        background: rgba(212, 175, 55, 0.08);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 12px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        text-align: left;
+      }
+
+      .status-info h3 {
+        color: #d4af37;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+      }
+
+      .status-info ul {
+        list-style: none;
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .status-info li {
+        padding: 0.25rem 0;
+      }
+
+      .status-info li:before {
+        content: "✓ ";
+        color: #d4af37;
+        font-weight: bold;
+        margin-right: 0.5rem;
+      }
+
+      .action-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 1.5rem;
+        background: linear-gradient(135deg, #d4af37 0%, #c5a021 100%);
+        color: #000000;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        box-shadow: 0 10px 30px rgba(212, 175, 55, 0.22);
+      }
+
+      .action-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 40px rgba(212, 175, 55, 0.32);
+      }
+
+      .action-button:active {
+        transform: translateY(0);
+      }
+
+      .secondary-action {
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        margin-left: 1rem;
+        background: transparent;
+        color: #d4af37;
+        border: 1px solid rgba(212, 175, 55, 0.5);
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+
+      .secondary-action:hover {
+        background: rgba(212, 175, 55, 0.1);
+        border-color: #d4af37;
+      }
+
+      .spinner {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border: 2px solid rgba(212, 175, 55, 0.3);
+        border-top: 2px solid #d4af37;
+        border-radius: 50%;
+        margin-right: 0.5rem;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      #status-message {
+        margin-top: 1rem;
+        font-size: 0.75rem;
+        color: rgba(212, 175, 55, 0.7);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        min-height: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="offline-container">
+      <div class="offline-icon">📡</div>
+      <h1>You're Offline</h1>
+      <p>AURA continues to work offline! Your changes are being saved locally and will sync when you're back online.</p>
+
+      <div class="status-info">
+        <h3>What you can do:</h3>
+        <ul>
+          <li>View your cached tasks</li>
+          <li>Create new tasks (queued for sync)</li>
+          <li>Edit existing tasks locally</li>
+          <li>Organize your work</li>
+        </ul>
+      </div>
+
+      <p style="font-size: 0.875rem; margin-bottom: 2rem">
+        Check your internet connection and refresh the page when you're ready to sync.
+      </p>
+
+      <button class="action-button" onclick="window.location.reload()">
+        <span class="spinner" id="retry-spinner" style="display: none"></span>
+        <span id="retry-text">Retry Connection</span>
+      </button>
+      <button class="secondary-action" onclick="goBack()">Go Back</button>
+
+      <div id="status-message"></div>
+    </div>
+
+    <script>
+      let isOnline = navigator.onLine
+
+      window.addEventListener("online", () => {
+        isOnline = true
+        updateStatus()
+      })
+
+      window.addEventListener("offline", () => {
+        isOnline = false
+        updateStatus()
+      })
+
+      function updateStatus() {
+        const statusEl = document.getElementById("status-message")
+        const retryBtn = document.querySelector(".action-button")
+        const spinner = document.getElementById("retry-spinner")
+        const retryText = document.getElementById("retry-text")
+
+        if (isOnline) {
+          statusEl.textContent = "✓ Connection restored! Refreshing..."
+          spinner.style.display = "inline-block"
+          setTimeout(() => window.location.reload(), 1500)
+        } else {
+          statusEl.textContent = "Still offline"
+          spinner.style.display = "none"
+        }
+      }
+
+      function goBack() {
+        window.history.back()
+      }
+
+      // Check connection on load
+      updateStatus()
+    </script>
+  </body>
+</html>

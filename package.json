@@ -1,0 +1,16 @@
+{
+  "name": "aura-project",
+  "private": true,
+  "workspaces": ["client", "server"],
+  "scripts": {
+    "install:all": "npm install --workspaces",
+    "dev": "concurrently \"npm --workspace=server run dev\" \"npm --workspace=client run dev\"",
+    "start:client": "npm --workspace=client run dev",
+    "start:server": "npm --workspace=server run dev",
+    "setup:components": "node create-dirs.js",
+    "postinstall": "node create-dirs.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}

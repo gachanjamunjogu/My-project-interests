@@ -1,0 +1,22 @@
+{
+  "name": "AURA - AI-Enhanced Task Manager",
+  "short_name": "AURA",
+  "description": "An AI-enhanced task manager with offline sync and intelligent planning",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070707",
+  "theme_color": "#D4AF37",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "utilities"],
+  "lang": "en-US",
+  "dir": "ltr"
+}
